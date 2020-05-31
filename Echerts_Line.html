@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts-en.common.js"></script>
+    <title>Line Charts</title>
+    <style>
+        #tyt-main {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tyt-main" style="width:600px;height:400px;"></div>
+</body>
+<script>
+    var line_chart;
+
+    option = {
+        // 标题 和 副标题
+        title: {
+            text: '发际线保护协会小组学习情况',
+            subtext: '纯属虚构'
+        },
+        // 是否显示提示框组件
+        tooltip: {
+            trigger: "axis", //axis坐标轴触发  item数据项图形触发
+        },
+        // 图例组件：可通过点击控制哪些系列不显示
+        legend: {
+            data: ["心情", "时间", "效率"],
+            right: "100",
+        },
+        // 工具栏
+        toolbox: {
+            show: true, //显示工具栏
+            showTitle: true, //鼠标hover是否显示icon标题
+            //工具配置
+            feature: {
+                //动态类型切换
+                magicType: {
+                    show: true,
+                    type: ['stack', 'tiled', 'line', 'bar']
+                },
+                // 保存为图片
+                savaAsImage: {
+                    show: true
+                }
+            }
+        },
+        // 直角坐标系中的x轴
+        xAxis: {
+            //类型：category类目轴  value数值轴  time时间轴 log对数轴
+            type: 'category',
+            boundaryGap: false, //坐标轴两边六百策略
+            data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+        },
+        //直角坐标系中的y轴
+        yAxis: {
+            type: "value"
+        },
+        // 系列列表:每个系列通过 type 决定自己的图表类型
+        series: [{
+                name: '心情',
+                type: 'line',
+                smooth: true,
+                data: [1000, 400, 800, 300, 900, 400, 1000]
+            },
+            {
+                name: '时间',
+                type: 'line',
+                smooth: true,
+                data: [400, 450, 420, 390, 405, 445, 432]
+            },
+            {
+                name: '效率',
+                type: 'line',
+                smooth: true,
+                data: [100, 120, 210, 540, 600, 330, 210]
+            }
+        ]
+    };
+    //初始化图表，返回ECharts实例
+    line_chart = echarts.init(document.getElementById('tyt-main'))
+    line_chart.setOption(option, true)
+</script>
+
+</html>

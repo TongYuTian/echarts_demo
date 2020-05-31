@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts-en.common.js"></script> -->
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.min.js"></script>
+    <title>Radar Charts</title>
+    <style>
+        #tyt_main {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tyt_main" style="width:600px;height:400px;"></div>
+</body>
+<script>
+    var radar_chart;
+
+    option = {
+        // 标题 和 副标题
+        title: {
+            text: '王者荣耀对战资料'
+        },
+        // 是否显示提示框组件
+        tooltip: {},
+        legend: {
+            data: ['综合得分', '胜率']
+        },
+        radar: {
+            name: {
+                textStyle: {
+                    color: '#fff',
+                    backgroundColor: '#000',
+                    borderRadius: 3,
+                    padding: [3.5]
+                }
+            },
+            // 雷达图的指示器，用来指定雷达图中的多个变量
+            indicator: [{
+                    name: '推进',
+                    max: 6500
+                },
+                {
+                    name: '输出',
+                    max: 16000
+                },
+                {
+                    name: '发育',
+                    max: 30000
+                },
+                {
+                    name: '团战',
+                    max: 38000
+                },
+                {
+                    name: '生存',
+                    max: 52000
+                },
+                {
+                    name: '战绩(KDA)',
+                    max: 25000
+                }
+            ]
+        },
+        // 系列列表:每个系列通过 type 决定自己的图表类型
+        series: [{
+            name: '综合得分 vs 胜率',
+            type: 'radar',
+            data: [{
+                    value: [4300, 10000, 28000, 35000, 50000, 19000],
+                    name: '综合得分'
+                },
+                {
+                    value: [5000, 14000, 28000, 31000, 42000, 21000],
+                    name: '胜率'
+                }
+            ]
+        }]
+    };
+    //初始化图表，返回ECharts实例
+    radar_chart = echarts.init(document.getElementById('tyt_main'))
+    radar_chart.setOption(option, true)
+</script>
+
+</html>

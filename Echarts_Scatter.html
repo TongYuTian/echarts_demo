@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts-en.common.js"></script>
+    <title>Scatter Charts</title>
+    <style>
+        #tyt_main {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tyt_main" style="width:600px;height:400px;"></div>
+</body>
+<script>
+    var scatter_chart;
+
+    option = {
+        // 标题 和 副标题
+        title:{
+            text:"Scatter Chart",
+            left:'center'
+        },
+        // 直角坐标系中的x轴
+        xAxis: {},
+        // 直角坐标系中的y轴
+        yAxis: {},
+        // 系列列表:每个系列通过 type 决定自己的图表类型
+        series: [{
+            symbolSize: 20,//标记的大小
+            data: [
+                [10.0, 8.04],
+                [8.0, 6.95],
+                [13.0, 7.58],
+                [9.0, 8.81],
+                [11.0, 8.33],
+                [14.0, 9.96],
+                [6.0, 7.24],
+                [4.0, 4.26],
+                [12.0, 10.84],
+                [7.0, 4.82],
+                [5.0, 5.68],
+                [2.0, 2.68]
+            ],
+            type:'scatter'
+        }]
+    };
+    //初始化图表，返回ECharts实例
+    scatter_chart = echarts.init(document.getElementById('tyt_main'))
+    scatter_chart.setOption(option, true)
+</script>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts-en.common.js"></script>
+    <title>Pie Charts</title>
+    <style>
+        #tyt_main {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tyt_main" style="width:600px;height:400px;"></div>
+</body>
+<script>
+    var pie_chart;
+
+    option = {
+        // 标题 和 副标题
+        title: {
+            text: "0",
+            subtext: "做题数",
+            x: "center",
+            y: "165",
+            // 主标题文本样式设置
+            textStyle: {
+                fontSize: "25",
+                fontWeight: "100"
+            },
+            // 副标题文本样式设置
+            subtextStyle: {
+                fontSize: 25,
+                color: "#000"
+            }
+        },
+        // 是否显示提示框组件
+        tooltip: {
+            //axis坐标轴触发  item数据项图形触发
+            trigger: "item",
+            // 刻度标签的内容格式器
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        // 图例组件：可通过点击控制哪些系列不显示
+        legend: {
+            orient: "vertical",
+            right: 10,
+            y: "center",
+            data: ["考点专练", "套卷练习", "仿真模考", "视频广告", "搜索引擎"]
+        },
+        // 系列列表:每个系列通过 type 决定自己的图表类型
+        series: [{
+            name: "做题数",
+            type: "pie",
+            radius: ["25%", "70%"],
+            // 是否启用防止标签重叠策略，默认开启，
+            // 在标签拥挤重叠的情况下会挪动各个标签的位置，防止标签间的重叠。
+            avoidLabelOverlap: false,
+            // 饼图图形上的文本标签，可用于说明图形的一些数据信息
+            label: {
+                show: false,
+                position: "center"
+            },
+            // 高亮的扇区和标签样式。
+            emphasis: {
+                label: {
+                    show: false,
+                    fontSize: "30",
+                    fontWeight: "bold"
+                }
+            },
+            // 标签的视觉引导线样式
+            labelLine: {
+                show: false
+            },
+            // 系列中的数据内容数组
+            data: [{
+                    value: 33,
+                    name: "考点专练"
+                },
+                {
+                    value: 33,
+                    name: "套卷练习"
+                },
+                {
+                    value: 33,
+                    name: "仿真模考"
+                }
+            ]
+        }]
+    };
+    //初始化图表，返回ECharts实例
+    pie_chart = echarts.init(document.getElementById('tyt_main'))
+    pie_chart.setOption(option, true)
+</script>
+
+</html>

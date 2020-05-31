@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts-en.common.js"></script> -->
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.min.js"></script>
+    <title>Graph Charts</title>
+    <style>
+        #tyt_main {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tyt_main" style="width:600px;height:400px;"></div>
+</body>
+<script>
+    var Graph_chart = echarts.init(document.getElementById('tyt_main'))
+
+
+    var axisData = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+    var data = axisData.map(function (item, i) {
+        return Math.round(Math.random() * 1000 * (i + 1));
+    });
+    var links = data.map(function (item, i) {
+        return {
+            source: i,
+            target: i + 1
+        };
+    });
+    links.pop();
+
+    option = {
+        // 标题 和 副标题
+        title: {
+            text: '关系图 Graph'
+        },
+        // 是否显示提示框组件
+        tooltip: {},
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: axisData
+        },
+        // x轴
+        yAxis: {
+            type: 'value'
+        },
+        // 系列列表:每个系列通过 type 决定自己的图表类型
+        series: [{
+            type: 'graph',
+            layout: 'none',
+            coordinateSystem: 'cartesian2d',
+            // 小圆点的大小
+            symbolSize: 20,
+            // 饼图图形上的文本标签，可用于说明图形的一些数据信息
+            label: {
+                show: true
+            },
+            edgeSymbol: ['circle', 'arrow'],
+            edgeSymbolSize: [4, 10],
+            data: data,
+            links: links,
+            lineStyle: {
+                color: '#2f4554'
+            }
+        }]
+    };
+
+    Graph_chart.setOption(option, true)
+</script>
+
+</html>

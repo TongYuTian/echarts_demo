@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts-en.common.js"></script> -->
+    <script src="https://cdn.bootcss.com/echarts/3.6.2/echarts.min.js"></script>
+    <title>Gauge Charts</title>
+    <style>
+        #tyt_main {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tyt_main" style="width:600px;height:400px;"></div>
+</body>
+<script>
+    var Gauge_chart = echarts.init(document.getElementById('tyt_main'))
+
+    option = {
+        // 是否显示提示框组件
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        // 工具栏
+        toolbox: {
+            //工具配置
+            feature: {
+                // 配置项还原
+                restore: {},
+                // 保存为图片
+                saveAsImage: {}
+            }
+        },
+        // 系列列表:每个系列通过 type 决定自己的图表类型
+        series: [{
+            name: '速度',
+            type: 'gauge',
+            detail: {
+                formatter: '{value}%'
+            },
+            data: [{
+                value: 50,
+                name: '速度'
+            }]
+        }]
+    };
+    setInterval(function () {
+        option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+        Gauge_chart.setOption(option, true);
+    }, 2000);
+    // Graph_chart.setOption(option, true)
+</script>
+
+</html>
